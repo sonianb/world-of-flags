@@ -1,11 +1,29 @@
-import { useState } from 'react'
+import React from "react";
+import Flags from './Flags';
+
 // import logo from './logo.svg'
 import './App.css'
 
 function App() {
-  const [count, setCount] = useState(0)
+  // console.log(flag);
 
   return (
+    <main>
+      <section>
+
+    <Flags 
+      // flag={flag}
+      // setFlag={setFlag}
+      
+    />
+      </section>
+    </main>
+  )
+}
+
+// console.log(flag);
+
+
     //Flags.jsx --> will contain question and flag function(fetch API & generate data), display "loading" msg & remember to export
     //Answers.jsx --> display correct answer and 2 wrong answers. 
 
@@ -24,17 +42,17 @@ function App() {
     //Play again btn will reset the state of the game(score:0, lives:3)
 
 
-    <div className="App">
-      <header className="App-header">
-        {/* <img src={logo} className="App-logo" alt="logo" /> */}
-        <p>Guess the country</p>
-        <p>
-          <button type="button" onClick={() => setCount((count) => count + 1)}>
-          </button>
-        </p>
-      </header>
-    </div>
-  )
-}
+//     <div className="App">
+//       <header className="App-header">
+//         {/* <img src={logo} className="App-logo" alt="logo" /> */}
+//         <p>Guess the country</p>
+//         <p>
+//           <button type="button" onClick={() => setCount((count) => count + 1)}>
+//           </button>
+//         </p>
+//       </header>
+//     </div>
+//   )
+// }
 
-export default App
+export default App;
