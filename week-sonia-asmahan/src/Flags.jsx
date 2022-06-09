@@ -1,14 +1,25 @@
 import React from "react";
+import Answers from "./Answers";
 
-const URL = "https://restcountries.com/v3.1/name/"
+const URL = "https://restcountries.com/v3.1/all/"
 
-export default function Flags(props) {
-    const [flag, setFlag] = React.useState("Greece");
+function randomNumber(num) {
+    return Math.floor(Math.random() * num)
+} 
+
+
+export default function Flags() {
+    const [flag, setFlag] = React.useState("");
+    const [country, setCountry] = React.useState("");
     
     React.useEffect(() => {
-        fetch(URL + flag)
+        fetch(URL)
         .then((res) => res.json())
-        .then((data) => setFlag(data[0].flag))
+        .then((data) => {
+            const randomNum = randomNumber(data.length -1)
+            setFlag(data[randomNum].flag);
+            setCountry(data[randomNum].name.common);
+        })
     }, []);
 
     if(!flag) return <div>Loading...</div>;
@@ -18,6 +29,8 @@ export default function Flags(props) {
             {flag}
         </div>
 
-        {/* <Answers /> */}
+        <Answers 
+        country={country}
+        />
     </div>)
 }
