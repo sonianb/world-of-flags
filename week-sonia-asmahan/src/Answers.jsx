@@ -1,4 +1,5 @@
 import React from "react";
+// import NextButton from "./NextButton";
 
 
 // need to know what flag was generated --> call API to get flag
@@ -19,7 +20,7 @@ export default function Answers(props) {
         //check if answer is correct
     } }>
     <input 
-    type="text" aria-label="Enter answer" name="answer"/>
+    type="text" aria-label="Enter answer" name="answer" required/>
     <button type="submit">Submit</button>
     
     </form>)
