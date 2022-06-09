@@ -1,6 +1,6 @@
-# Week5-Sonia-Asmahan
+# World Flags
 
-## World Flags 🇯🇲🇨🇻🇯🇵🇬🇧🇱🇨🇸🇴🇱🇻
+## 🇯🇲🇨🇻🇯🇵🇬🇧🇱🇨🇸🇴🇱🇻
 ### How well do you know your world flags?
 
 ## How to run:
