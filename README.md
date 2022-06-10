@@ -15,7 +15,7 @@
 - User should be able to click the 'nex' button to move onto the next flag.
 
 ## Crieria
-- [ ] cept some user input (e.g. a username)
+- [x] Accept some user input (e.g. a username)
 - [ ] Query an API (e.g. the Github API, or any other fun one)
 - [ ] Populate the UI with API data
 - [ ] Have some form of persistent state and interactivity, e.g.
