@@ -13,11 +13,10 @@ export default function Answers(props) {
 
     return (<form onSubmit={(event) => {
         event.preventDefault();
-        const userInput = event.target.answer.value;
-        if(userInput === props.country) {
-            console.log("Hello");
+        const userInput = event.target.answer.value.toLowerCase();
+        if(userInput === props.country.toLowerCase()) {
+            props.handleAnswer()
         } 
-        //check if answer is correct
     } }>
     <input 
     type="text" aria-label="Enter answer" name="answer" required/>

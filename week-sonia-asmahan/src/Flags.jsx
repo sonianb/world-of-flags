@@ -8,41 +8,53 @@ const URL = "https://restcountries.com/v3.1/all";
 function randomNumber(num) {
     return Math.floor(Math.random() * num)
 } 
+
+function handleAnswer() {
+    setValid(true)
+}
+
   
 export default function Flags() {
     const [flag, setFlag] = React.useState("");
-    // const [country, setCountry] = React.useState("");
+    const [country, setCountry] = React.useState("");
+    const [countries, setCountries] = React.useState([]);
+    const [valid, setValid] = React.useState(false)
 
-    function generateFlag() {
-        return fetch(URL)
+    //wait for Flags component to be ready to execute what's inside the effect
+    React.useEffect(() => {
+        fetch(URL)
         .then((res) => res.json())
         .then((data) => {
-            const randomNum = randomNumber(data.length -1)
-            setFlag(data);
-            
-            // setCountry(data[randomNum].name.common);
-        })
+            setCountries(data)
+            })
+    }, []);
+    
+    function generateCountry() {
+        const randomNum = randomNumber(countries.length - 1)
+        setFlag(countries[randomNum].flag)
+        setCountry(countries[randomNum].name.common) 
     }
-    generateFlag();
-    console.log("flag", flag);
-
-    console.log("hello2");
 
       if(!flag) {
-            return <div>Loading...</div>
+            return <>
+            <button onClick={() => generateCountry()}>Start game</button>
+            </>
+
         } else {
         return <>
             <h2>What's the country?</h2> 
-            <div>
+            <div className="country-flag">
                 {flag}
             </div>
-        <button>Next</button>
+            
+        <Answers 
+        country={country}
+        handleAnswer={() => handleAnswer()}
+        />
+{ !valid ? <p>Try again</p> : <p>Correct!</p> && <button onClick={() => generateCountry()}>Next</button>
+            
+        }
         </>
         }
-        
-    //    <Answers 
-    //     country={country}
 
-    //     />
-    
     }

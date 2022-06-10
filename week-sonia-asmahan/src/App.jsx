@@ -9,8 +9,6 @@ function App() {
       <section>
 
     <Flags 
-      // flag={flag}
-      // setFlag={setFlag}
       
     />
       </section>
