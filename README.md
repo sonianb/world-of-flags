@@ -4,7 +4,7 @@
 ### How well do you know your world flags?
 
 ## How to run:
-- Visit the deployed site: superlative-lamington-a2ccbf.netlify.app
+- Visit the deployed site.
 - Submit your guess and see your score
 - Click next to move onto the next flag.
 
