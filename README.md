@@ -15,9 +15,7 @@
 - User should be able to click the 'nex' button to move onto the next flag.
 
 ## Crieria
-- [x] Accept some user input (e.g. a username)
-- [ ] Query an API (e.g. the Github API, or any other fun one)
-- [ ] Populate the UI with API data
-- [ ] Have some form of persistent state and interactivity, e.g.
-- [ ] A hunger bar that decreases over time and is topped up when you feed them stars
-- [ ] A button to add more users to your collection
+- [x] Accept some user input (e.g. a username);
+- [x] Query an API (e.g. the Github API, or any other fun one);
+- [x] Populate the UI with API data; and
+- [x] Have some form of persistent state and interactivity.
