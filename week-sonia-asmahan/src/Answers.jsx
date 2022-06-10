@@ -11,14 +11,16 @@ import React from "react";
 
 export default function Answers(props) {
 
+    
     return (<form onSubmit={(event) => {
         event.preventDefault();
         const userInput = event.target.answer.value.toLowerCase();
         if(userInput === props.country.toLowerCase()) {
-            props.handleAnswer()
+            props.handleAnswer();
+            // props.setCountry("");
         } 
     } }>
-    <input 
+    <input
     type="text" aria-label="Enter answer" name="answer" required/>
     <button type="submit">Submit</button>
     

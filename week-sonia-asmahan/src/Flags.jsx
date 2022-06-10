@@ -1,7 +1,5 @@
 import React from "react";
 import Answers from "./Answers";
-// import NextButton from "./NextButton";
-
 
 const URL = "https://restcountries.com/v3.1/all";
 
@@ -9,18 +7,19 @@ function randomNumber(num) {
     return Math.floor(Math.random() * num)
 } 
 
-function handleAnswer() {
-    setValid(true)
-}
-
   
 export default function Flags() {
     const [flag, setFlag] = React.useState("");
     const [country, setCountry] = React.useState("");
     const [countries, setCountries] = React.useState([]);
-    const [valid, setValid] = React.useState(false)
+    const [valid, setValid] = React.useState(false);
+    const [score, setScore] = React.useState(0);
 
-    //wait for Flags component to be ready to execute what's inside the effect
+    function handleAnswer() {
+        setValid(true);
+        setScore(score + 1)
+    }
+
     React.useEffect(() => {
         fetch(URL)
         .then((res) => res.json())
@@ -33,6 +32,7 @@ export default function Flags() {
         const randomNum = randomNumber(countries.length - 1)
         setFlag(countries[randomNum].flag)
         setCountry(countries[randomNum].name.common) 
+        setValid(false);
     }
 
       if(!flag) {
@@ -43,6 +43,7 @@ export default function Flags() {
         } else {
         return <>
             <h2>What's the country?</h2> 
+            <h3>Your score: {score}</h3>
             <div className="country-flag">
                 {flag}
             </div>
@@ -51,9 +52,8 @@ export default function Flags() {
         country={country}
         handleAnswer={() => handleAnswer()}
         />
-{ !valid ? <p>Try again</p> : <p>Correct!</p> && <button onClick={() => generateCountry()}>Next</button>
-            
-        }
+{ !valid ? "" : <p>Correct!</p> }
+<button onClick={() => generateCountry()}>Next</button>
         </>
         }
 
