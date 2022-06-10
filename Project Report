@@ -1,0 +1,30 @@
+# Project Report
+
+## Introduction 
+We are building an interactive game in React that uses data from an API.
+
+## Project scope 
+- What are you not building?
+We're not building a multiplayer game- our game currently allows one user to interact with it at a time. We're also not buiding a game that saves the user's score after they've refreshed the page. The game also doesn't limit the number of wrong answers the user can submit.
+
+- How did you decide what features were important?
+As we require fethcing API data, the feature we knew to prioritise was populating that data onto the UI. Following this, we needed a feature that allows users to input data in response to the API data.
+
+# Requirement analysis 
+How will you ensure your project is accessible to as many users as possible?
+Users can play the game using keyboard controls only.
+
+# Project learnings 
+- Did your team work effectively?
+
+Given the issues that we had with project setup, we worked effectively. We used live share and pair programmed for the entire project.
+
+What would you do differently next time?
+
+# Recommendations and conclusions 
+- What features would you prioritise to build next?
+We would prioritise storing the user's score after the page is refreshed. We would also prioritise limiting the number of wrong attempts and possibly offering a range of answers for the user to pick from.
+
+- Was the project a success?
+The project is not complete yet, but we met all the requirements, so it was a success.
+
