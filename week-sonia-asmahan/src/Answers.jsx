@@ -1,4 +1,5 @@
 import React from "react";
+// import NextButton from "./NextButton";
 
 
 // need to know what flag was generated --> call API to get flag
@@ -10,16 +11,17 @@ import React from "react";
 
 export default function Answers(props) {
 
+    
     return (<form onSubmit={(event) => {
         event.preventDefault();
-        const userInput = event.target.answer.value;
-        if(userInput === props.country) {
-            console.log("Hello");
+        const userInput = event.target.answer.value.toLowerCase();
+        if(userInput === props.country.toLowerCase()) {
+            props.handleAnswer();
+            // props.setCountry("");
         } 
-        //check if answer is correct
     } }>
-    <input 
-    type="text" aria-label="Enter answer" name="answer"/>
+    <input
+    type="text" aria-label="Enter answer" name="answer" required/>
     <button type="submit">Submit</button>
     
     </form>)
