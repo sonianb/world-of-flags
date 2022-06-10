@@ -17,9 +17,9 @@ export default function Flags() {
 
     function handleAnswer() {
         setValid(true);
-        setScore(score + 1)
+        setScore(score + 1);
     }
-
+    
     React.useEffect(() => {
         fetch(URL)
         .then((res) => res.json())
@@ -27,7 +27,16 @@ export default function Flags() {
             setCountries(data)
             })
     }, []);
+
+    // React.useEffect(() => {
+    //     const data = window.localStorage.getItem(score);
+    //     if(data !== null) setScore(data), 
+    //     [] 
+    // })
     
+    // React.useEffect(() => {
+    //     window.localStorage.setItem("score", score);
+    // }, [score])  
     function generateCountry() {
         const randomNum = randomNumber(countries.length - 1)
         setFlag(countries[randomNum].flag)
@@ -37,11 +46,16 @@ export default function Flags() {
 
       if(!flag) {
             return <>
-            <button onClick={() => generateCountry()}>Start game</button>
+                    <div className="start-btn-container">
+            <button className="start-btn" onClick={() => generateCountry()}>Start game</button>
+            </div>
             </>
 
         } else {
         return <>
+
+        <h1>World of Flags</h1>
+        <div class="quiz-container">
             <h2>What's the country?</h2> 
             <h3>Your score: {score}</h3>
             <div className="country-flag">
@@ -52,8 +66,9 @@ export default function Flags() {
         country={country}
         handleAnswer={() => handleAnswer()}
         />
-{ !valid ? "" : <p>Correct!</p> }
-<button onClick={() => generateCountry()}>Next</button>
+{ !valid ? "" : <p className="answer-output">Correct!</p> }
+<button className="btn" onClick={() => generateCountry()}>Next</button>
+    </div>
         </>
         }
 

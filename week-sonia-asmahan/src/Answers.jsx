@@ -17,12 +17,11 @@ export default function Answers(props) {
         const userInput = event.target.answer.value.toLowerCase();
         if(userInput === props.country.toLowerCase()) {
             props.handleAnswer();
-            // props.setCountry("");
         } 
     } }>
     <input
     type="text" aria-label="Enter answer" name="answer" required/>
-    <button type="submit">Submit</button>
+    <button className="btn "type="submit">Submit</button>
     
     </form>)
 }
