@@ -14,7 +14,7 @@
 - User should see their score
 - User should be able to click the 'nex' button to move onto the next flag.
 
-## Crieria
+## Criteria
 - [x] Accept some user input (e.g. a username);
 - [x] Query an API (e.g. the Github API, or any other fun one);
 - [x] Populate the UI with API data; and
