@@ -12,7 +12,7 @@ export default function ResetGame(props) {
     );
   } else if (props.lives === 0) {
     return (
-      <div class="endgame-container">
+      <div class="quiz-container">
         <p>Game Over</p>
         <button className="btn" onClick={() => props.restartGame()}>
           Play again
