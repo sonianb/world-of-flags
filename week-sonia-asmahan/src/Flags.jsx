@@ -14,10 +14,16 @@ export default function Flags() {
     const [countries, setCountries] = React.useState([]);
     const [valid, setValid] = React.useState(false);
     const [score, setScore] = React.useState(0);
+    const [lives, setLives] = React.useState(3);
 
-    function handleAnswer() {
+    function handleCorrectAnswer() {
         setValid(true);
         setScore(score + 1);
+    }
+
+    function handleWrongAnswer() {
+        setValid(false);
+        setLives(lives - 1);
     }
     
     React.useEffect(() => {
@@ -29,14 +35,16 @@ export default function Flags() {
     }, []);
 
     // React.useEffect(() => {
-    //     const data = window.localStorage.getItem(score);
+    //     const data = localStorage.getItem(score);
     //     if(data !== null) setScore(data), 
     //     [] 
     // })
     
     // React.useEffect(() => {
-    //     window.localStorage.setItem("score", score);
+    //     localStorage.setItem("score", score);
     // }, [score])  
+
+
     function generateCountry() {
         const randomNum = randomNumber(countries.length - 1)
         setFlag(countries[randomNum].flag)
@@ -55,19 +63,22 @@ export default function Flags() {
         return <>
 
         <h1>World of Flags</h1>
-        <div class="quiz-container">
+        <div className="quiz-container">
             <h2>What's the country?</h2> 
             <h3>Your score: {score}</h3>
+            <h3>Remaining Lives: {lives}</h3>
             <div className="country-flag">
                 {flag}
             </div>
             
         <Answers 
         country={country}
-        handleAnswer={() => handleAnswer()}
+        handleCorrectAnswer={() => handleCorrectAnswer()}
+        handleWrongAnswer={() => handleWrongAnswer()}
         />
 { !valid ? "" : <p className="answer-output">Correct!</p> }
-<button className="btn" onClick={() => generateCountry()}>Next</button>
+
+<button className="btn" onClick={() => { generateCountry(); handleWrongAnswer();}}>Next</button>
     </div>
         </>
         }
