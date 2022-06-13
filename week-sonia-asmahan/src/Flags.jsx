@@ -13,8 +13,12 @@ export default function Flags() {
   const [country, setCountry] = React.useState("");
   const [countries, setCountries] = React.useState([]);
   const [valid, setValid] = React.useState(false);
-  const [score, setScore] = React.useState(0);
-  const [lives, setLives] = React.useState(3);
+  const [score, setScore] = React.useState(
+    parseInt(localStorage.getItem("score")) ?? 0
+  );
+  const [lives, setLives] = React.useState(
+    parseInt(localStorage.getItem("lives")) ?? 3
+  );
 
   function handleCorrectAnswer() {
     setValid(true);
@@ -35,14 +39,17 @@ export default function Flags() {
   }, []);
 
   // React.useEffect(() => {
-  //     const data = localStorage.getItem(score);
-  //     if(data !== null) setScore(data),
-  //     []
-  // })
+  //   const data =;
+  //   if (data !== null) setScore(data);
+  // }, []);
 
-  // React.useEffect(() => {
-  //     localStorage.setItem("score", score);
-  // }, [score])
+  React.useEffect(() => {
+    localStorage.setItem("score", score);
+  }, [score]);
+
+  React.useEffect(() => {
+    localStorage.setItem("lives", lives);
+  }, [lives]);
 
   function restartGame() {
     setLives(3);
