@@ -1,7 +1,6 @@
 import React from "react";
 // import NextButton from "./NextButton";
 
-
 // need to know what flag was generated --> call API to get flag
 // check if the flag matches the answer
 // if they match, background turns green
@@ -10,18 +9,22 @@ import React from "react";
 //to fetch country name  data[0].name.common
 
 export default function Answers(props) {
-
-    
-    return (<form onSubmit={(event) => {
+  return (
+    <form
+      onSubmit={(event) => {
         event.preventDefault();
         const userInput = event.target.answer.value.toLowerCase();
-        if(userInput === props.country.toLowerCase()) {
-            props.handleAnswer();
-        } 
-    } }>
-    <input
-    type="text" aria-label="Enter answer" name="answer" required/>
-    <button className="btn "type="submit">Submit</button>
-    
-    </form>)
+        if (userInput === props.country.toLowerCase()) {
+          props.handleCorrectAnswer();
+        } else {
+          props.handleWrongAnswer();
+        }
+      }}
+    >
+      <input type="text" aria-label="Enter answer" name="answer" required />
+      <button className="btn " type="submit">
+        Submit
+      </button>
+    </form>
+  );
 }
