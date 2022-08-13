@@ -6,7 +6,7 @@
 ## How to play
 - Visit the [deployed site](https://world-of-flags.netlify.app/).
 - Submit your answer and see if it's correct. Click 'next' to continue the game.
-- If you don't know the answer, click 'Give up'. You'll see the answer but, you'll lose a life. 
+- If you don't know the answer, click 'Give up'. You'll see the answer, but you'll lose a life. 
 
 ## User Journey
 - User should see a random flag on their screen
