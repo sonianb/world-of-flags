@@ -1,5 +1,5 @@
 import React from "react";
-import Flags from "./Flags";
+import Flags from "./components/Flags";
 import "./App.css";
 
 function App() {

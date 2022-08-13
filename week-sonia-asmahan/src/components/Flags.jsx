@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import Answers from "./Answers";
-import ResetGame from "./ResetGame";
+import Answers from "././Answers";
+import ResetGame from "././ResetGame";
 
 const URL = "https://restcountries.com/v3.1/all";
 
@@ -11,6 +11,7 @@ function randomNumber(num) {
 export default function Flags() {
   const [flag, setFlag] = useState("");
   const [country, setCountry] = useState("");
+  const [displayAnswer, setDisplayAnswer] = useState(false);
   const [countries, setCountries] = useState([]);
   const [valid, setValid] = useState(false);
   const [score, setScore] = useState(
@@ -23,11 +24,13 @@ export default function Flags() {
   function handleCorrectAnswer() {
     setValid(true);
     setScore(score + 1);
+    setDisplayAnswer(false);
   }
 
   function handleWrongAnswer() {
     setValid(false);
     setLives(lives - 1);
+    setDisplayAnswer(true);
   }
 
   useEffect(() => {
@@ -57,6 +60,7 @@ export default function Flags() {
     setFlag(countries[randomNum].flag);
     setCountry(countries[randomNum].name.common);
     setValid(false);
+    setDisplayAnswer(false);
   }
 
   if (!flag || lives === 0) {
@@ -84,16 +88,20 @@ export default function Flags() {
             handleCorrectAnswer={() => handleCorrectAnswer()}
             handleWrongAnswer={() => handleWrongAnswer()}
           />
-          {!valid ? (
-            <button
-              className="btn"
-              onClick={() => {
-                generateCountry();
-                handleWrongAnswer();
-              }}
-            >
-              Skip
-            </button>
+
+          {displayAnswer ? <div>The correct answer is {country}.</div> : ""}
+
+          {!valid && !displayAnswer ? (
+            <>
+              <button
+                className="btn"
+                onClick={() => {
+                  handleWrongAnswer();
+                }}
+              >
+                Give up
+              </button>
+            </>
           ) : (
             <>
               <p className="answer-output">Correct!</p>
