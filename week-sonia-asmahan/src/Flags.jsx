@@ -14,10 +14,10 @@ export default function Flags() {
   const [countries, setCountries] = useState([]);
   const [valid, setValid] = useState(false);
   const [score, setScore] = useState(
-    parseInt(localStorage.getItem("score")) ?? 0
+    parseInt(localStorage.getItem("score")) || 0
   );
   const [lives, setLives] = useState(
-    parseInt(localStorage.getItem("lives")) ?? 3
+    parseInt(localStorage.getItem("lives")) || 3
   );
 
   function handleCorrectAnswer() {
