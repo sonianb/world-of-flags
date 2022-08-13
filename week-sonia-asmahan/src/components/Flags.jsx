@@ -19,7 +19,7 @@ export default function Flags() {
     parseInt(localStorage.getItem("score")) || 0
   );
   const [lives, setLives] = useState(
-    parseInt(localStorage.getItem("lives")) || 3
+    parseInt(localStorage.getItem("lives")) || 10
   );
 
   function handleCorrectAnswer() {
@@ -51,7 +51,7 @@ export default function Flags() {
   }, [lives]);
 
   function restartGame() {
-    setLives(3);
+    setLives(10);
     setScore(0);
     setFlag(undefined);
     setFormInput("");
