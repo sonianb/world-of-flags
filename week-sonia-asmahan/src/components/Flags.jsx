@@ -1,6 +1,6 @@
-import React from "react";
-import Answers from "./Answers";
-import ResetGame from "./ResetGame";
+import React, { useEffect, useState } from "react";
+import Answers from "././Answers";
+import ResetGame from "././ResetGame";
 
 const URL = "https://restcountries.com/v3.1/all";
 
@@ -9,28 +9,32 @@ function randomNumber(num) {
 }
 
 export default function Flags() {
-  const [flag, setFlag] = React.useState("");
-  const [country, setCountry] = React.useState("");
-  const [countries, setCountries] = React.useState([]);
-  const [valid, setValid] = React.useState(false);
-  const [score, setScore] = React.useState(
-    parseInt(localStorage.getItem("score")) ?? 0
+  const [flag, setFlag] = useState("");
+  const [country, setCountry] = useState("");
+  const [displayAnswer, setDisplayAnswer] = useState(false);
+  const [countries, setCountries] = useState([]);
+  const [formInput, setFormInput] = useState("");
+  const [valid, setValid] = useState(false);
+  const [score, setScore] = useState(
+    parseInt(localStorage.getItem("score")) || 0
   );
-  const [lives, setLives] = React.useState(
-    parseInt(localStorage.getItem("lives")) ?? 3
+  const [lives, setLives] = useState(
+    parseInt(localStorage.getItem("lives")) || 10
   );
 
   function handleCorrectAnswer() {
     setValid(true);
     setScore(score + 1);
+    setDisplayAnswer(false);
   }
 
   function handleWrongAnswer() {
     setValid(false);
     setLives(lives - 1);
+    setDisplayAnswer(true);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(URL)
       .then((res) => res.json())
       .then((data) => {
@@ -38,23 +42,19 @@ export default function Flags() {
       });
   }, []);
 
-  // React.useEffect(() => {
-  //   const data =;
-  //   if (data !== null) setScore(data);
-  // }, []);
-
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("score", score);
   }, [score]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("lives", lives);
   }, [lives]);
 
   function restartGame() {
-    setLives(3);
+    setLives(10);
     setScore(0);
     setFlag(undefined);
+    setFormInput("");
   }
 
   function generateCountry() {
@@ -62,6 +62,7 @@ export default function Flags() {
     setFlag(countries[randomNum].flag);
     setCountry(countries[randomNum].name.common);
     setValid(false);
+    setDisplayAnswer(false);
   }
 
   if (!flag || lives === 0) {
@@ -88,21 +89,34 @@ export default function Flags() {
             country={country}
             handleCorrectAnswer={() => handleCorrectAnswer()}
             handleWrongAnswer={() => handleWrongAnswer()}
+            formInput={formInput}
+            setFormInput={setFormInput}
           />
-          {!valid ? (
-            <button
-              className="btn"
-              onClick={() => {
-                generateCountry();
-                handleWrongAnswer();
-              }}
-            >
-              Skip
-            </button>
+
+          {displayAnswer ? <div>The correct answer is {country}.</div> : ""}
+
+          {valid ? <p className="answer-output">Correct!</p> : ""}
+
+          {!valid && !displayAnswer ? (
+            <>
+              <button
+                className="btn"
+                onClick={() => {
+                  handleWrongAnswer();
+                }}
+              >
+                Give up
+              </button>
+            </>
           ) : (
             <>
-              <p className="answer-output">Correct!</p>
-              <button className="btn" onClick={() => generateCountry()}>
+              <button
+                className="btn"
+                onClick={() => {
+                  generateCountry();
+                  setFormInput("");
+                }}
+              >
                 Next
               </button>
             </>
