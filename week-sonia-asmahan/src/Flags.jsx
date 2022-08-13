@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Answers from "./Answers";
 import ResetGame from "./ResetGame";
 
@@ -9,14 +9,14 @@ function randomNumber(num) {
 }
 
 export default function Flags() {
-  const [flag, setFlag] = React.useState("");
-  const [country, setCountry] = React.useState("");
-  const [countries, setCountries] = React.useState([]);
-  const [valid, setValid] = React.useState(false);
-  const [score, setScore] = React.useState(
+  const [flag, setFlag] = useState("");
+  const [country, setCountry] = useState("");
+  const [countries, setCountries] = useState([]);
+  const [valid, setValid] = useState(false);
+  const [score, setScore] = useState(
     parseInt(localStorage.getItem("score")) ?? 0
   );
-  const [lives, setLives] = React.useState(
+  const [lives, setLives] = useState(
     parseInt(localStorage.getItem("lives")) ?? 3
   );
 
@@ -30,7 +30,7 @@ export default function Flags() {
     setLives(lives - 1);
   }
 
-  React.useEffect(() => {
+  useEffect(() => {
     fetch(URL)
       .then((res) => res.json())
       .then((data) => {
@@ -38,16 +38,11 @@ export default function Flags() {
       });
   }, []);
 
-  // React.useEffect(() => {
-  //   const data =;
-  //   if (data !== null) setScore(data);
-  // }, []);
-
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("score", score);
   }, [score]);
 
-  React.useEffect(() => {
+  useEffect(() => {
     localStorage.setItem("lives", lives);
   }, [lives]);
 
