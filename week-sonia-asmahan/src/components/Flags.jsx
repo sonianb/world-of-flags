@@ -13,6 +13,7 @@ export default function Flags() {
   const [country, setCountry] = useState("");
   const [displayAnswer, setDisplayAnswer] = useState(false);
   const [countries, setCountries] = useState([]);
+  const [formInput, setFormInput] = useState("");
   const [valid, setValid] = useState(false);
   const [score, setScore] = useState(
     parseInt(localStorage.getItem("score")) || 0
@@ -53,6 +54,7 @@ export default function Flags() {
     setLives(3);
     setScore(0);
     setFlag(undefined);
+    setFormInput("");
   }
 
   function generateCountry() {
@@ -87,6 +89,8 @@ export default function Flags() {
             country={country}
             handleCorrectAnswer={() => handleCorrectAnswer()}
             handleWrongAnswer={() => handleWrongAnswer()}
+            formInput={formInput}
+            setFormInput={setFormInput}
           />
 
           {displayAnswer ? <div>The correct answer is {country}.</div> : ""}
@@ -106,7 +110,13 @@ export default function Flags() {
             </>
           ) : (
             <>
-              <button className="btn" onClick={() => generateCountry()}>
+              <button
+                className="btn"
+                onClick={() => {
+                  generateCountry();
+                  setFormInput("");
+                }}
+              >
                 Next
               </button>
             </>

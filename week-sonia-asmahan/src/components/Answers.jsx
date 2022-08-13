@@ -13,7 +13,14 @@ export default function Answers(props) {
         }
       }}
     >
-      <input type="text" aria-label="Enter answer" name="answer" required />
+      <input
+        type="text"
+        aria-label="Enter answer"
+        name="answer"
+        required
+        value={props.formInput}
+        onChange={(event) => props.setFormInput(event.target.value)}
+      />
       <button className="btn " type="submit">
         Submit
       </button>

@@ -4,7 +4,12 @@ export default function ResetGame(props) {
   if (props.lives !== 0) {
     return (
       <div className="start-btn-container">
-        <button className="start-btn" onClick={() => props.startGame()}>
+        <button
+          className="start-btn"
+          onClick={() => {
+            props.startGame();
+          }}
+        >
           Start game
         </button>
       </div>
@@ -13,7 +18,13 @@ export default function ResetGame(props) {
     return (
       <div className="quiz-container">
         <p>Game Over</p>
-        <button className="btn" onClick={() => props.restartGame()}>
+        <button
+          className="btn"
+          onChange={(event) => props.setFormInput(event.target.value)}
+          onClick={() => {
+            props.restartGame();
+          }}
+        >
           Play again
         </button>
       </div>
