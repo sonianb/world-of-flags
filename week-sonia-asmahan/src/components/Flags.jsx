@@ -91,6 +91,8 @@ export default function Flags() {
 
           {displayAnswer ? <div>The correct answer is {country}.</div> : ""}
 
+          {valid ? <p className="answer-output">Correct!</p> : ""}
+
           {!valid && !displayAnswer ? (
             <>
               <button
@@ -104,7 +106,6 @@ export default function Flags() {
             </>
           ) : (
             <>
-              <p className="answer-output">Correct!</p>
               <button className="btn" onClick={() => generateCountry()}>
                 Next
               </button>
