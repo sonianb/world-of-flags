@@ -1,6 +1,7 @@
 import React from "react";
 
 export default function Answers(props) {
+  if (props.isDisabled) return;
   return (
     <form
       onSubmit={(event) => {
@@ -21,7 +22,7 @@ export default function Answers(props) {
         value={props.formInput}
         onChange={(event) => props.setFormInput(event.target.value)}
       />
-      <button className="btn " type="submit">
+      <button className="btn" type="submit">
         Submit
       </button>
     </form>

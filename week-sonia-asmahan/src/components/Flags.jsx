@@ -15,6 +15,7 @@ export default function Flags() {
   const [countries, setCountries] = useState([]);
   const [formInput, setFormInput] = useState("");
   const [valid, setValid] = useState(false);
+  const [isDisabled, setIsDisabled] = useState(false);
   const [score, setScore] = useState(
     parseInt(localStorage.getItem("score")) || 0
   );
@@ -26,12 +27,14 @@ export default function Flags() {
     setValid(true);
     setScore(score + 1);
     setDisplayAnswer(false);
+    setIsDisabled(true);
   }
 
   function handleWrongAnswer() {
     setValid(false);
     setLives(lives - 1);
     setDisplayAnswer(true);
+    setIsDisabled(true);
   }
 
   useEffect(() => {
@@ -55,6 +58,7 @@ export default function Flags() {
     setScore(0);
     setFlag(undefined);
     setFormInput("");
+    setIsDisabled(false);
   }
 
   function generateCountry() {
@@ -63,6 +67,7 @@ export default function Flags() {
     setCountry(countries[randomNum].name.common);
     setValid(false);
     setDisplayAnswer(false);
+    setIsDisabled(false);
   }
 
   if (!flag || lives === 0) {
@@ -91,6 +96,8 @@ export default function Flags() {
             handleWrongAnswer={() => handleWrongAnswer()}
             formInput={formInput}
             setFormInput={setFormInput}
+            isDisabled={isDisabled}
+            setIsDisabled={setIsDisabled}
           />
 
           {displayAnswer ? <div>The correct answer is {country}.</div> : ""}
